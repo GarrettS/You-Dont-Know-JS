@@ -23,7 +23,7 @@ As this is not really a book on compiler theory, I will try to keep our discussi
 
 In traditional compiled-language process, a chunk of source code, your program, would undergo typically three steps *before* it is executed, roughly called "compilation":
 
-1. **Tokenizing/Lexing:** breaking up a string of characters into meaningful (to the language) chunks, called tokens. For instance, consider the program: `var a = 2;`. This program would likely be broken up into the following tokens: `var`, `a`, `=`, `2`, and `;`. Whitespace may or may not be persisted as a token, depending on whether its meaningful or not.
+1. **Tokenizing/Lexing:** breaking up a string of characters into meaningful (to the language) chunks, called tokens. For instance, consider the program: `var a = 2;`. This program would likely be broken up into the following tokens: `var`, `a`, `=`, `2`, and `;`. Whitespace may or may not be persisted as a token, depending on whether it is meaningful or not.
 
     **Note:** The difference between tokenizing and lexing is subtle and academic, but it centers on whether or not these tokens are identified in a *stateless* or *stateful* way. Put simply, if the tokenizer were to invoke stateful parsing rules to figure out whether `a` should be considered a distinct token or just part of another token, *that* would be **lexing**.
 
@@ -129,7 +129,7 @@ There's a subtle but important assignment here. Did you spot it?
 
 You may have missed the implied `a = 2` in this code snippet. It happens when the value `2` is passed as an argument to the `foo(..)` function, in which case that value is **assigned** to the parameter `a`. The `LHS` reference look-up here is the parameter `a`.
 
-There's another RHS reference, for the value of `a`, and that value is passed to `console.log(..)`. But then, `console.log(..)` needs a reference. It's an RHS, first for the `console` object, then a property-resolution occurs to see if it has a method called `log`.
+There's another RHS reference, for the value of `a`, and that value is passed to `console.log(..)`. But then, `console.log(..)` needs a reference. It's a RHS, first for the `console` object, then a property-resolution occurs to see if it has a method called `log`.
 
 Finally, we can conceptualize that there's an LHS/RHS exchange of passing the value `2` (by way of variable `a`'s RHS look-up) into `log(..)`. Inside of the native implementation of `log(..)`, we can assume it has parameters, the first of which (perhaps called `arg1`) has an LHS reference look-up, before assigning `2` to it.
 
